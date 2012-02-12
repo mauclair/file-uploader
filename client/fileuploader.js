@@ -290,6 +290,7 @@ qq.FileUploaderBasic = function(o){
             alert(message);
         },
         inputName: 'qqfile',
+        url: null,
         extraDropzones : []
     };
     qq.extend(this._options, o);
@@ -383,6 +384,8 @@ qq.FileUploaderBasic.prototype = {
         if (result.error){
             this._options.showMessage(result.error);
         }             
+        if(this._filesInProgress == 0 && this._options.url)
+            window.location.href = this._options.url;
     },
     _onCancel: function(id, fileName){
         this._filesInProgress--;        
